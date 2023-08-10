@@ -1,0 +1,1273 @@
+{
+	"info": {
+		"_postman_id": "637900cb-da98-42e2-9c91-6ac2256aeeea",
+		"name": "Darey.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12828198"
+	},
+	"item": [
+		{
+			"name": "Dictionary API",
+			"item": [
+				{
+					"name": "1. Search dictionary with valid word",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Word KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('word')).to.eql(true);});",
+									"//pm.test(\"phonetic KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetic')).to.eql(true);});",
+									"pm.test(\"phonetics KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetics')).to.eql(true);});",
+									"pm.test(\"meanings KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('meanings')).to.eql(true);});",
+									"",
+									"tests[\"Word Validation Passed\"] = ResponseBody[0].word == \"hello\";",
+									"tests[\"phonetics Message Validation Passed\"] = ResponseBody[0].phonetics[1].text == \"/həˈləʊ/\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/hello",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Search dictionary with a letter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Word KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('word')).to.eql(true);});",
+									"pm.test(\"phonetic KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetic')).to.eql(true);});",
+									"pm.test(\"phonetics KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetics')).to.eql(true);});",
+									"pm.test(\"meanings KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('meanings')).to.eql(true);});",
+									"",
+									"tests[\"Word Validation Passed\"] = ResponseBody[0].word == \"a\";",
+									"tests[\"phonetic Message Validation Passed\"] = ResponseBody[0].phonetic == \"/æɪ/\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/a",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								"a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Search dictionary with valid two letter word",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Word KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('word')).to.eql(true);});",
+									"pm.test(\"phonetic KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetic')).to.eql(true);});",
+									"pm.test(\"phonetics KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetics')).to.eql(true);});",
+									"pm.test(\"meanings KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('meanings')).to.eql(true);});",
+									"",
+									"tests[\"Word Validation Passed\"] = ResponseBody[0].word == \"on\";",
+									"tests[\"phonetic Message Validation Passed\"] = ResponseBody[0].phonetic == \"/ɒn/\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/on",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								"on"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Search dictionary with valid  a three letter words",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Word KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('word')).to.eql(true);});",
+									"pm.test(\"phonetic KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetic')).to.eql(true);});",
+									"pm.test(\"phonetics KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetics')).to.eql(true);});",
+									"pm.test(\"meanings KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('meanings')).to.eql(true);});",
+									"",
+									"tests[\"Word Validation Passed\"] = ResponseBody[0].word == \"cat\";",
+									"tests[\"phonetic Message Validation Passed\"] = ResponseBody[0].phonetic == \"/kat/\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/cat",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								"cat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Search dictionary with valid  a four letter words",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Word KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('word')).to.eql(true);});",
+									"pm.test(\"phonetic KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetic')).to.eql(true);});",
+									"pm.test(\"phonetics KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetics')).to.eql(true);});",
+									"pm.test(\"meanings KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('meanings')).to.eql(true);});",
+									"",
+									"tests[\"Word Validation Passed\"] = ResponseBody[0].word == \"bake\";",
+									"tests[\"phonetic Message Validation Passed\"] = ResponseBody[0].phonetic ==  \"/beɪk/\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/bake",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								"bake"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. Search dictionary with no details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. Search dictionary with no details as space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"});",
+									"if (responseCode.code === 404){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Title KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('title')).to.eql(true);});",
+									"pm.test(\"Message KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('message')).to.eql(true);});",
+									"pm.test(\"Resolution KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('resolution')).to.eql(true);});",
+									"",
+									"tests[\"Title Validation Passed\"] = ResponseBody.title == \"No Definitions Found\";",
+									"tests[\"Message Validation Passed\"] = ResponseBody.message ==  \"Sorry pal, we couldn't find definitions for the word you were looking for.\";",
+									"tests[\"Resolution Validation Passed\"] = ResponseBody.resolution == \"You can try the search again at later time or head to the web instead.\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/ ",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								" "
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. Search dictionary with invalid word",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"});",
+									"if (responseCode.code === 404){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Title KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('title')).to.eql(true);});",
+									"pm.test(\"Message KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('message')).to.eql(true);});",
+									"pm.test(\"Resolution KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('resolution')).to.eql(true);});",
+									"",
+									"tests[\"Title Validation Passed\"] = ResponseBody.title == \"No Definitions Found\";",
+									"tests[\"Message Validation Passed\"] = ResponseBody.message ==  \"Sorry pal, we couldn't find definitions for the word you were looking for.\";",
+									"tests[\"Resolution Validation Passed\"] = ResponseBody.resolution == \"You can try the search again at later time or head to the web instead.\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/ acuna",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								" acuna"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. Search dictionary with special character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"});",
+									"if (responseCode.code === 404){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Title KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('title')).to.eql(true);});",
+									"pm.test(\"Message KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('message')).to.eql(true);});",
+									"pm.test(\"Resolution KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('resolution')).to.eql(true);});",
+									"",
+									"tests[\"Title Validation Passed\"] = ResponseBody.title == \"No Definitions Found\";",
+									"tests[\"Message Validation Passed\"] = ResponseBody.message ==  \"Sorry pal, we couldn't find definitions for the word you were looking for.\";",
+									"tests[\"Resolution Validation Passed\"] = ResponseBody.resolution == \"You can try the search again at later time or head to the web instead.\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/ #",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								" "
+							],
+							"hash": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10. Search dictionary with numerics",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"});",
+									"if (responseCode.code === 404){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Title KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('title')).to.eql(true);});",
+									"pm.test(\"Message KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('message')).to.eql(true);});",
+									"pm.test(\"Resolution KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('resolution')).to.eql(true);});",
+									"",
+									"tests[\"Title Validation Passed\"] = ResponseBody.title == \"No Definitions Found\";",
+									"tests[\"Message Validation Passed\"] = ResponseBody.message ==  \"Sorry pal, we couldn't find definitions for the word you were looking for.\";",
+									"tests[\"Resolution Validation Passed\"] = ResponseBody.resolution == \"You can try the search again at later time or head to the web instead.\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/4777",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								"4777"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. Search dictionary with alphanumerics",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"});",
+									"if (responseCode.code === 404){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Title KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('title')).to.eql(true);});",
+									"pm.test(\"Message KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('message')).to.eql(true);});",
+									"pm.test(\"Resolution KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('resolution')).to.eql(true);});",
+									"",
+									"tests[\"Title Validation Passed\"] = ResponseBody.title == \"No Definitions Found\";",
+									"tests[\"Message Validation Passed\"] = ResponseBody.message ==  \"Sorry pal, we couldn't find definitions for the word you were looking for.\";",
+									"tests[\"Resolution Validation Passed\"] = ResponseBody.resolution == \"You can try the search again at later time or head to the web instead.\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/ 4777under",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								" 4777under"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12. Search dictionary with valid compound word",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Word KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('word')).to.eql(true);});",
+									"pm.test(\"phonetic KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetic')).to.eql(true);});",
+									"pm.test(\"phonetics KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetics')).to.eql(true);});",
+									"pm.test(\"meanings KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('meanings')).to.eql(true);});",
+									"",
+									"tests[\"Word Validation Passed\"] = ResponseBody[0].word == \"up-to-date\";",
+									"tests[\"phonetic Message Validation Passed\"] = ResponseBody[0].phonetic == \"/ˌʌp tə ˈdeɪt/\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/ up-to-date",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								" up-to-date"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "13. Search dictionary with invalid compound words",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"});",
+									"if (responseCode.code === 404){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Title KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('title')).to.eql(true);});",
+									"pm.test(\"Message KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('message')).to.eql(true);});",
+									"pm.test(\"Resolution KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('resolution')).to.eql(true);});",
+									"",
+									"tests[\"Title Validation Passed\"] = ResponseBody.title == \"No Definitions Found\";",
+									"tests[\"Message Validation Passed\"] = ResponseBody.message ==  \"Sorry pal, we couldn't find definitions for the word you were looking for.\";",
+									"tests[\"Resolution Validation Passed\"] = ResponseBody.resolution == \"You can try the search again at later time or head to the web instead.\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/ applepie",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								" applepie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "14. Search dictionary with valid word in all caps",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Word KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('word')).to.eql(true);});",
+									"//pm.test(\"phonetic KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetic')).to.eql(true);});",
+									"pm.test(\"phonetics KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetics')).to.eql(true);});",
+									"pm.test(\"meanings KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('meanings')).to.eql(true);});",
+									"",
+									"tests[\"Word Validation Passed\"] = ResponseBody[0].word == \"hello\";",
+									"tests[\"phonetics Message Validation Passed\"] = ResponseBody[0].phonetics[1].text == \"/həˈləʊ/\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/ HELLO",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								" HELLO"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "15. Search dictionary with case sensitive valid words",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Word KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('word')).to.eql(true);});",
+									"//pm.test(\"phonetic KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetic')).to.eql(true);});",
+									"pm.test(\"phonetics KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('phonetics')).to.eql(true);});",
+									"pm.test(\"meanings KEY PRESENT\",function(){pm.expect(ResponseBody[0].hasOwnProperty('meanings')).to.eql(true);});",
+									"",
+									"tests[\"Word Validation Passed\"] = ResponseBody[0].word == \"hello\";",
+									"tests[\"phonetics Message Validation Passed\"] = ResponseBody[0].phonetics[1].text == \"/həˈləʊ/\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/helLO",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								"helLO"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "16. Search dictionary with valid word with a period",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"});",
+									"if (responseCode.code === 404){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Title KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('title')).to.eql(true);});",
+									"pm.test(\"Message KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('message')).to.eql(true);});",
+									"pm.test(\"Resolution KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('resolution')).to.eql(true);});",
+									"",
+									"tests[\"Title Validation Passed\"] = ResponseBody.title == \"No Definitions Found\";",
+									"tests[\"Message Validation Passed\"] = ResponseBody.message ==  \"Sorry pal, we couldn't find definitions for the word you were looking for.\";",
+									"tests[\"Resolution Validation Passed\"] = ResponseBody.resolution == \"You can try the search again at later time or head to the web instead.\";",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6InRvZ2hhcmFuZHVrdW5Abmlic3MtcGxjLmNvbS5uZyIsImZpcnN0TmFtZSI6IlRvcml0c2VqdSIsImxhc3ROYW1lIjoiT2doYXJhbmR1a3VuIiwiaW1hZ2VVcmwiOm51bGwsInBob25lTnVtYmVyIjoiMDgwODQwMDkwNzIiLCJzdGF0dXMiOiJBQ1RJVkUiLCJmaXJzdFRpbWVMb2dpbiI6dHJ1ZSwicmVzZXRUb2tlbiI6bnVsbCwiaW5zdGl0dXRpb25JZCI6MjUsInJvbGVJZCI6MSwicm9sZSI6eyJpZCI6MSwibmFtZSI6IlNVUEVSX0FETUlOIn0sImluc3RpdHV0aW9uIjp7ImlkIjoyNSwibmFtZSI6Ik5JQlNTIiwiY29kZSI6Ijk5OSIsImNsaWVudElkIjpudWxsLCJzaG9ydE5hbWUiOm51bGwsInN0YXR1cyI6IkFDVElWRSIsImluc3RpdHV0aW9uVHlwZSI6eyJpZCI6MiwibmFtZSI6Ik5JQlNTIn19LCJwZXJtaXNzaW9ucyI6W3siaWQiOjEsIm5hbWUiOiJDUkVBVEVfU1VQRVJfQURNSU4ifSx7ImlkIjoyLCJuYW1lIjoiQ1JFQVRFX1VTRVIifSx7ImlkIjozLCJuYW1lIjoiQ1JFQVRFX0FETUlOIn0seyJpZCI6NCwibmFtZSI6IlZJRVdfQUxMX0lOU1RJVFVUSU9OX1JFUE9SVCJ9LHsiaWQiOjUsIm5hbWUiOiJWSUVXX1JFUE9SVCJ9XSwidXBkYXRlZEF0IjoiMjAyMi0wNC0yMlQxMTozMzoyNy44ODVaIn0sImlhdCI6MTY1MDYyNzIwNywiZXhwIjoxNjUwNjI4NDA3fQ.mqUFSpJDA8nd35aYQl4jnLhGIDFlhKL3bP5Ad067kvU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{words_base_url}}/hello.",
+							"host": [
+								"{{words_base_url}}"
+							],
+							"path": [
+								"hello."
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Providers API",
+			"item": [
+				{
+					"name": "1. Get list of all providers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Data KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('data')).to.eql(true);});",
+									"",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/providers.json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"providers.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Get list of APIs for a particular provider",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"APIs KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('apis')).to.eql(true);});",
+									"",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/ably.io.json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ably.io.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. Get list of APIs for an invalid provider",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"pm.response.to.have.status(404);",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/ably.com.json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ably.com.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. List all serviceName of a particular provider",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Data KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('data')).to.eql(true);});",
+									"",
+									"tests[\"Data Validation Passed\"] = ResponseBody.data == \"platform\";",
+									"",
+									"",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/ably.io/services.json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ably.io",
+								"services.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Retrieve one version of a particular API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Data KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('data')).to.eql(true);});",
+									"",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/specs/ably.io/1.1.0.json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"specs",
+								"ably.io",
+								"1.1.0.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Retrieve one version of a particular API with a serviceName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Data KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('data')).to.eql(true);});",
+									"",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/specs/ably.io/platform/ably.io:platform/1.1.0.json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"specs",
+								"ably.io",
+								"platform",
+								"ably.io:platform",
+								"1.1.0.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. List of all APIs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Provider  KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('1forge.com')).to.eql(true);});",
+									"",
+									"",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/list.json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. List of all metrics",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"if (responseCode.code === 200){",
+									"var ResponseBody = JSON.parse(responseBody);",
+									"pm.test(\"Number of Specs KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('numSpecs')).to.eql(true);});",
+									"pm.test(\"Number of APIs KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('numAPIs')).to.eql(true);});",
+									"pm.test(\"Number of Endpoints KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('numEndpoints')).to.eql(true);});",
+									"pm.test(\"Unreachable KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('unreachable')).to.eql(true);});",
+									"pm.test(\"Invalid  KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('invalid')).to.eql(true);});",
+									"pm.test(\"Unofficial KEY PRESENT\",function(){pm.expect(ResponseBody.hasOwnProperty('unofficial')).to.eql(true);});",
+									"",
+									"",
+									"tests[\"Number of Specs Validation Passed\"] = ResponseBody.numSpecs == 3992;",
+									"tests[\"Number of APIs Message Validation Passed\"] = ResponseBody.numAPIs == 2529;",
+									"tests[\"Number of Endpoints Validation Passed\"] = ResponseBody.numEndpoints == 108837;",
+									"tests[\"Unreachable  Message Validation Passed\"] = ResponseBody.unreachable == 166;",
+									"",
+									"tests[\"Invalid Validation Passed\"] = ResponseBody.invalid == 688;",
+									"tests[\"Unofficial Message Validation Passed\"] = ResponseBody.unofficial == 25;",
+									"",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/metrics.json",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"metrics.json"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
